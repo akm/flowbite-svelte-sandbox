@@ -1,12 +1,36 @@
 <script type="ts">
-	import { Button, Label, Input, Checkbox, Alert } from 'flowbite-svelte';
+	import { enhance } from '$app/forms';
+	import { Button, Label, Input, Checkbox, Alert, Modal, Spinner } from 'flowbite-svelte';
 	import { ExclamationCircleOutline } from 'flowbite-svelte-icons';
 
 	export let form;
+	export let inProgress = false;
 </script>
 
 <div class="container mx-auto px-8 py-4">
-	<form class="flex flex-col space-y-6" method="POST" action="?/signin">
+	<Modal
+		bind:open={inProgress}
+		dismissable={false}
+		autoclose
+		defaultClass="relative flex flex-col mx-auto px-6"
+		size="xs"
+	>
+		<Spinner />
+		<span class="mx-4">ログイン処理中…</span>
+	</Modal>
+
+	<form
+		class="flex flex-col space-y-6"
+		method="POST"
+		action="?/signin"
+		use:enhance={() => {
+			inProgress = true;
+			return async ({ update }) => {
+				await update();
+				inProgress = false;
+			};
+		}}
+	>
 		<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">ログイン</h3>
 
 		{#if form?.error}
@@ -15,6 +39,7 @@
 				{form.error}
 			</Alert>
 		{/if}
+
 		<Label class="space-y-2">
 			<span>メールアドレス</span>
 			<Input type="email" name="email" placeholder="name@company.com" required />
