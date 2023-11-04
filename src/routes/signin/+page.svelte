@@ -3,7 +3,7 @@
 </script>
 
 <div class="container mx-auto px-8 py-4">
-	<form class="flex flex-col space-y-6" action="#">
+	<form class="flex flex-col space-y-6" method="POST" action="?/signin">
 		<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">ログイン</h3>
 		<Label class="space-y-2">
 			<span>メールアドレス</span>
