@@ -26,7 +26,10 @@ export const actions = {
 			});
 		}
 
-		cookies.set('session_id', '1234567890abcdef', {
+		// const session_id = Math.random().toString(36).slice(-8);
+		const userName = email?.toString().split('@')[0];
+
+		cookies.set('session_id', userName + ':1234567890abcdef', {
 			path: '/',
 			maxAge: 60 * 60 * 24 * 7 // 1 week
 		});
