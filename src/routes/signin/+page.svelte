@@ -10,7 +10,7 @@
 		<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">ログイン</h3>
 
 		{#if form?.error}
-			<Alert>
+			<Alert dismissable>
 				<ExclamationCircleOutline slot="icon" class="w-4 h-4" />
 				{form.error}
 			</Alert>
