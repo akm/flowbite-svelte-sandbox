@@ -1,5 +1,12 @@
-import type { RequestEvent } from '@sveltejs/kit';
+import type { RequestEvent, ServerLoadEvent } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
+
+export function load(event: ServerLoadEvent) {
+	// redirect user if logged in
+	if (event.locals.user) {
+		throw redirect(302, '/');
+	}
+}
 
 export const actions = {
 	// https://kit.svelte.jp/docs/types#public-types-action
@@ -26,7 +33,10 @@ export const actions = {
 			});
 		}
 
-		cookies.set('session_id', '1234567890abcdef', {
+		// const session_id = Math.random().toString(36).slice(-8);
+		const userName = email?.toString().split('@')[0];
+
+		cookies.set('session_id', userName + ':1234567890abcdef', {
 			path: '/',
 			maxAge: 60 * 60 * 24 * 7 // 1 week
 		});
