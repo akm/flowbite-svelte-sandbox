@@ -1,5 +1,12 @@
-import type { RequestEvent } from '@sveltejs/kit';
+import type { RequestEvent, ServerLoadEvent } from '@sveltejs/kit';
 import { fail, redirect } from '@sveltejs/kit';
+
+export function load(event: ServerLoadEvent) {
+	// redirect user if logged in
+	if (event.locals.user) {
+		throw redirect(302, '/');
+	}
+}
 
 export const actions = {
 	// https://kit.svelte.jp/docs/types#public-types-action
