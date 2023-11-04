@@ -6,15 +6,15 @@
 </script>
 
 <div class="container mx-auto px-8 py-4">
-	{#if form?.error}
-		<Alert>
-			<ExclamationCircleOutline slot="icon" class="w-4 h-4" />
-			{form.error}
-		</Alert>
-	{/if}
-
 	<form class="flex flex-col space-y-6" method="POST" action="?/signin">
 		<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">ログイン</h3>
+
+		{#if form?.error}
+			<Alert>
+				<ExclamationCircleOutline slot="icon" class="w-4 h-4" />
+				{form.error}
+			</Alert>
+		{/if}
 		<Label class="space-y-2">
 			<span>メールアドレス</span>
 			<Input type="email" name="email" placeholder="name@company.com" required />
