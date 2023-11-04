@@ -1,8 +1,16 @@
-<script>
-	import { Button, Label, Input, Checkbox } from 'flowbite-svelte';
+<script type="ts">
+	import { Button, Label, Input, Checkbox, Alert } from 'flowbite-svelte';
+
+	export let form;
 </script>
 
 <div class="container mx-auto px-8 py-4">
+	{#if form?.error}
+		<Alert>
+			{form.error}
+		</Alert>
+	{/if}
+
 	<form class="flex flex-col space-y-6" method="POST" action="?/signin">
 		<h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">ログイン</h3>
 		<Label class="space-y-2">
