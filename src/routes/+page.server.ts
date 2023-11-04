@@ -6,4 +6,8 @@ export function load(event: ServerLoadEvent) {
 	if (!event.locals.user) {
 		throw redirect(302, '/signin');
 	}
+
+	return {
+		user: event.locals.user
+	};
 }
