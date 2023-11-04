@@ -4,8 +4,7 @@
 </script>
 
 <div class="p-8">
-	<Alert>
-		<span class="font-medium">Info alert!</span>
-		Welcome {$page.data.user.name}
+	<Alert color="green">
+		<span class="font-medium">Welcome {$page.data.user.name} !</span>
 	</Alert>
 </div>
