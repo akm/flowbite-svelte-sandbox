@@ -13,19 +13,17 @@ export const actions = {
 		const email = data.get('email');
 		const password = data.get('password');
 		if (email == null || password == null) {
-			fail(400, {
-				error: 'invalid_request',
+			return fail(400, {
+				error: 'email and password are required',
 				error_description: 'email and password are required'
 			});
-			return;
 		}
 
 		if (email?.toString().includes('ng') || password?.toString().includes('ng')) {
-			fail(403, {
-				error: 'invalid_grant',
+			return fail(403, {
+				error: 'invalid username or password',
 				error_description: 'invalid username or password'
 			});
-			return;
 		}
 
 		cookies.set('session_id', '1234567890abcdef', {
