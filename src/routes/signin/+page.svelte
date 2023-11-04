@@ -1,5 +1,6 @@
 <script type="ts">
 	import { Button, Label, Input, Checkbox, Alert } from 'flowbite-svelte';
+	import { ExclamationCircleOutline } from 'flowbite-svelte-icons';
 
 	export let form;
 </script>
@@ -7,6 +8,7 @@
 <div class="container mx-auto px-8 py-4">
 	{#if form?.error}
 		<Alert>
+			<ExclamationCircleOutline slot="icon" class="w-4 h-4" />
 			{form.error}
 		</Alert>
 	{/if}
